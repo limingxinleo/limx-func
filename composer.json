@@ -4,9 +4,7 @@
   "type": "library",
   "license": "MIT",
   "autoload": {
-    "files": [
-      "src/curl.php"
-    ]
+    "psr-4": { "limx\\func\\": "src" }
   },
   "require": {
     "php": ">=5.4.0"
