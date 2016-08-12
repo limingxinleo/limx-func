@@ -8,14 +8,14 @@
 // +----------------------------------------------------------------------
 // | Date: 2016/8/12 Time: 13:45
 // +----------------------------------------------------------------------
-namespace limx\func\curl;
+
 /**
  * 通过CURL发送HTTP请求
  * @param string $url //请求URL
  * @param array $postFields //请求参数
  * @return mixed
  */
-function post($url, $postFields, $headerData = array())
+function curl_post($url, $postFields, $headerData = array())
 {
     $postFields = http_build_query($postFields);
     $ch = curl_init();
@@ -37,7 +37,7 @@ function post($url, $postFields, $headerData = array())
 }
 
 
-function get($url, $headerData = array())
+function curl_get($url, $headerData = array())
 {
     $curl = curl_init();
     //设置抓取的url
@@ -61,7 +61,7 @@ function get($url, $headerData = array())
     return $result;
 }
 
-function post_json($url, $data, $header = [])
+function curl_post_json($url, $data, $header = [])
 {
     $data_string = json_encode($data);
     $ch = curl_init($url);

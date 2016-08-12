@@ -1,0 +1,14 @@
+{
+  "name": "limingxinleo/limx-func",
+  "description": "一部分扩展函数",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "files": [
+      "src/curl.php"
+    ]
+  },
+  "require": {
+    "php": ">=5.4.0"
+  }
+}
