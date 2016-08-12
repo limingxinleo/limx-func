@@ -8,3 +8,10 @@
 // +----------------------------------------------------------------------
 // | Date: 2016/8/12 Time: 13:50
 // +----------------------------------------------------------------------
+require_once 'vendor/autoload.php';
+
+$id = 1;
+$url = 'http://demo.tp5.lmx0536.cn/index/tools.api/get_api/id/' . $id;
+$res = curl_get($url);
+$obj = json_decode($res,true);
+var_dump($obj);
