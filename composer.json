@@ -1,6 +1,6 @@
 {
   "name": "limingxinleo/limx-func",
-  "description": "一部分扩展函数",
+  "description": "there are some functions",
   "type": "library",
   "license": "MIT",
   "autoload": {
