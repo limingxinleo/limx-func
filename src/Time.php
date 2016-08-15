@@ -19,7 +19,7 @@ class Time
      * @param string $format 时间格式
      * @return bool|string
      */
-    function date_format($time = NULL, $change = NULL, $format = 'Y-m-d')
+    public static function date_format($time = NULL, $change = NULL, $format = 'Y-m-d')
     {
         if (empty($time)) {
             //初始化数据
@@ -40,7 +40,7 @@ class Time
      * @author limx
      * @return bool|string
      */
-    function get_now_time()
+    public static function get_now_time()
     {
         return Date("Y-m-d H:i:s");
     }
