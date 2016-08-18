@@ -49,6 +49,13 @@ if (!function_exists('array_column')) {
 }
 
 if (!function_exists('traverse')) {
+    /**
+     * [traverse 遍历文件]
+     * @author limx
+     * @param $path 文件夹
+     * @param $result 结果集合
+     * @param string $ext 扩展名
+     */
     function traverse($path, &$result, $ext = "")
     {
         if (substr($path, -1) == '/') {
