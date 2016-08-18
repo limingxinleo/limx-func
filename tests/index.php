@@ -16,6 +16,7 @@ require_once '../src/Rsa.php';
 require_once '../src/Random.php';
 require_once '../src/Debug.php';
 require_once '../src/Encrypt.php';
+require_once '../src/functions/helper.php';
 
 $id = 1;
 $url = 'http://demo.tp5.lmx0536.cn/index/tools.api/get_api/id/' . $id;
@@ -65,6 +66,13 @@ $str = limx\func\Encrypt::encode($str, 'love');
 limx\func\Debug::dump($str);
 $str = limx\func\Encrypt::decode($str, 'love');
 limx\func\Debug::dump($str);
+
+$res = [];
+traverse(__DIR__ . '/../', $res, 'php');
+limx\func\Debug::dump($res);
+$res = [];
+traverse(__DIR__ . '/..', $res, 'php');
+limx\func\Debug::dump($res);
 
 
 

@@ -47,3 +47,25 @@ if (!function_exists('array_column')) {
         return $result;
     }
 }
+
+if (!function_exists('traverse')) {
+    function traverse($path, &$result, $ext = "")
+    {
+        if (substr($path, -1) == '/') {
+            $path = substr($path, 0, strlen($path) - 1);
+        }
+        $curr = glob($path . '/*');
+        $len = strlen($ext) + 1;
+        if ($curr) {
+            foreach ($curr as $f) {
+                if (is_dir($f)) {
+                    traverse($f, $result, $ext);
+                } elseif (empty($ext)) {
+                    array_push($result, $f);
+                } elseif (strtolower(substr($f, 0 - $len)) == '.' . $ext) {
+                    array_push($result, $f);
+                }
+            }
+        }
+    }
+}
