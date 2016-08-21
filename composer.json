@@ -1,15 +1,17 @@
 {
-  "name": "limingxinleo/limx-func",
-  "description": "there are some functions",
-  "type": "library",
-  "license": "MIT",
-  "autoload": {
-    "psr-4": { "limx\\func\\": "src" },
-    "files": [
-      "src/functions/helper.php"
-    ]
-  },
-  "require": {
-    "php": ">=5.4.0"
-  }
+    "name": "limingxinleo/limx-func",
+    "description": "there are some functions",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "limx\\func\\": "src"
+        },
+        "files": [
+            "src/functions/helper.php"
+        ]
+    },
+    "require": {
+        "php": ">=5.4.0"
+    }
 }
