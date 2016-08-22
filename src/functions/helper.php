@@ -76,3 +76,40 @@ if (!function_exists('traverse')) {
         }
     }
 }
+
+if (!function_exists('multiarray')) {
+    /**
+     * [multiarray 将带父级ID的数组重新组合成为kv的二维数组]
+     * @author limx
+     * @param array $data 需要整理的数据源
+     * @param string $key 数据源的主键
+     * @param string $pkey 数据源的父ID
+     * @param string $pvalue 数据源父ID 的值
+     * @param string $ckey
+     * @param bool $isFirst
+     * @return array
+     */
+    function multiarray($data = [], $key = 'id', $pkey = '', $pvalue = '', $ckey = 'children', $isFirst = true)
+    {
+        if (empty($pkey)) {
+            return $data;
+        }
+        $result = [];
+        foreach ($data as $i => $v) {
+            empty($result[$v[$key]]) && $result[$v[$key]] = [];
+            $result[$v[$key]] = $result[$v[$key]] + $v;
+
+            if ($isFirst) {
+                if ($v[$pkey] == $pvalue) {
+                    empty($result[$pvalue][$v[$key]]) && $result[$pvalue][$v[$key]] = [];
+                    $result[$pvalue][$v[$key]] = $result[$pvalue][$v[$key]] + $v;
+                } else {
+                    $temp = multiarray([$v], $key, $pkey, $v[$pkey], $ckey, false);
+                    empty($result[$v[$pkey]][$ckey]) && $result[$v[$pkey]][$ckey] = [];
+                    $result[$v[$pkey]][$ckey] = $result[$v[$pkey]][$ckey] + $temp;
+                }
+            }
+        }
+        return $result;
+    }
+}
