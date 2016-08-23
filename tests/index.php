@@ -16,6 +16,7 @@ require_once '../src/Rsa.php';
 require_once '../src/Random.php';
 require_once '../src/Debug.php';
 require_once '../src/Encrypt.php';
+require_once '../src/Log.php';
 require_once '../src/functions/helper.php';
 
 $id = 1;
@@ -73,6 +74,8 @@ limx\func\Debug::dump($res);
 $res = [];
 traverse(__DIR__ . '/..', $res, 'php');
 limx\func\Debug::dump($res);
+
+limx\func\Log::write($str);
 
 
 
