@@ -11,8 +11,9 @@
 namespace limx\func;
 class Log
 {
-    public static function write($content = '', $code = 'LOG', $file = '', $root = 'log/')
+    public static function write($content = '', $code = 'LOG', $file = '', $root = '')
     {
+        empty($root) && $root = 'log/' . Date('Ym') . '/';
         if (!is_dir($root)) {
             mkdir($root, 0777, true);
         }
