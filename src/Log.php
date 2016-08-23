@@ -14,11 +14,9 @@ class Log
     public static function write($content = '', $code = 'LOG', $file = '', $root = '')
     {
         empty($root) && $root = 'log/' . Date('Ym') . '/';
+        substr($root, -1) != '/' && $root .= '/';
         if (!is_dir($root)) {
             mkdir($root, 0777, true);
-        }
-        if (substr($root, -1) != '/') {
-            $root .= '/';
         }
 
         if (empty($file)) {
