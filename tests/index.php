@@ -76,6 +76,7 @@ traverse(__DIR__ . '/..', $res, 'php');
 limx\func\Debug::dump($res);
 
 limx\func\Log::write($str);
+limx\func\Log::write($res, 'arr');
 
 
 

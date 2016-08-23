@@ -11,7 +11,7 @@
 namespace limx\func;
 class Log
 {
-    public static function write($content = '', $file = '', $root = 'cache/', $code = '')
+    public static function write($content = '', $code = 'LOG', $file = '', $root = 'log/')
     {
         if (!is_dir($root)) {
             mkdir($root, 0777, true);
@@ -23,9 +23,11 @@ class Log
         if (empty($file)) {
             $file = Date('Ymd') . '.log';
         }
-        if (!empty($code)) {
-            $content = $code . '<<' . $content;
-        }
-        file_put_contents($root . $file, $content . "\n", FILE_APPEND);
+        $msg[] = Date('Y-m-d H:i:s');
+        $msg[] = strtoupper($code);
+        $msg[] = is_array($content) ? json_encode($content) : $content;
+
+        $info = implode('|', $msg);
+        file_put_contents($root . $file, $info . "\n", FILE_APPEND);
     }
 }
