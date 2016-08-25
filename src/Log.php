@@ -11,7 +11,16 @@
 namespace limx\func;
 class Log
 {
-    public static function write($content = '', $code = 'LOG', $file = '', $root = '')
+    /**
+     * [write 写日志]
+     * @desc
+     * @author limx
+     * @param string $content 日志内容 Arr 或 String
+     * @param string $code 标识
+     * @param string $root 根目录
+     * @param string $file 文件名
+     */
+    public static function write($content = '', $code = 'LOG', $root = '', $file = '')
     {
         empty($root) && $root = 'log/' . Date('Ym') . '/';
         substr($root, -1) != '/' && $root .= '/';
