@@ -17,22 +17,46 @@ class Curl
      * @param array $postFields //请求参数
      * @return mixed
      */
-    public static function post($url, $postFields, $headerData = array())
+    public static function post($url, $data, $type = 'url', $header = NULL, $ssl = false)
     {
-        $postFields = http_build_query($postFields);
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-        if (!empty($headerData)) {
-            $headerArr = array();
-            foreach ($headerData as $i => $v) {
-                $headerArr[] = $i . ':' . $v;
-            }
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headerData);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        //要求结果为字符串且输出到屏幕上
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);//严格校验
+        //设置header
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+        if ($ssl) {
+            curl_setopt($ch, CURLOPT_SSLCERTTYPE, 'PEM');
+            curl_setopt($ch, CURLOPT_SSLCERT, $ssl['sslcert_path']);
+            curl_setopt($ch, CURLOPT_SSLKEYTYPE, 'PEM');
+            curl_setopt($ch, CURLOPT_SSLKEY, $ssl['sslkey_path']);
         }
+
+        switch (strtolower($type)) {
+            case 'url':
+                $postFields = http_build_query($data);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+                break;
+            case 'json':
+                $postFields = json_encode($data);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                        'Content-Type: application/json',
+                        'Content-Length: ' . strlen($postFields))
+                );
+                break;
+            case 'data':
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+                break;
+            default:
+                $postFields = http_build_query($data);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+                break;
+        }
+
         $result = curl_exec($ch);
         curl_close($ch);
         return $result;
