@@ -24,13 +24,12 @@ class Log
     {
         empty($root) && $root = 'log/' . Date('Ym') . '/';
         substr($root, -1) != '/' && $root .= '/';
+        empty($file) && $file = Date('Ymd');
+        $file .= '.log';
         if (!is_dir($root)) {
             mkdir($root, 0777, true);
         }
 
-        if (empty($file)) {
-            $file = Date('Ymd') . '.log';
-        }
         $msg[] = Date('Y-m-d H:i:s');
         $msg[] = strtoupper($code);
         $msg[] = is_array($content) ? json_encode($content) : $content;
