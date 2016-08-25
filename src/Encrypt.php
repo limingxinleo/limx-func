@@ -49,6 +49,14 @@ class Encrypt
 
     }
 
+    /**
+     * [decode 解密]
+     * @desc
+     * @author limx
+     * @param $string
+     * @param string $key
+     * @return string
+     */
     public static function decode($string, $key = '')
     {
         $key = md5($key);
