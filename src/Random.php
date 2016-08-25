@@ -11,6 +11,14 @@
 namespace limx\func;
 class Random
 {
+    /**
+     * [str 生成随即字符串]
+     * @desc
+     * @author limx
+     * @param $intLength 长度
+     * @param string $strType 类型 N数字 S字母 C数字字母
+     * @return string
+     */
     public static function str($intLength, $strType = 'C')
     {
         $arrChars = array();

@@ -38,7 +38,14 @@ class Curl
         return $result;
     }
 
-
+    /**
+     * [get CURL GET 方法]
+     * @desc
+     * @author limx
+     * @param $url
+     * @param array $headerData
+     * @return mixed
+     */
     public static function get($url, $headerData = array())
     {
         $curl = curl_init();
@@ -63,6 +70,15 @@ class Curl
         return $result;
     }
 
+    /**
+     * [post_json CURL POST JSON 方法]
+     * @desc
+     * @author limx
+     * @param $url
+     * @param $data
+     * @param array $header
+     * @return mixed
+     */
     public static function post_json($url, $data, $header = [])
     {
         $data_string = json_encode($data);
