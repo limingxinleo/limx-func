@@ -19,11 +19,9 @@ require_once '../src/Encrypt.php';
 require_once '../src/Log.php';
 require_once '../src/functions/helper.php';
 
-$id = 1;
-$url = 'http://demo.tp5.lmx0536.cn/index/tools.api/get_api/id/' . $id;
+$url = 'http://demo.tp5.lmx0536.cn/index/demos.tp5/test_input/key1/aa/key2/bb?key3=cc';
 $res = limx\func\Curl::get($url);
-$obj = json_decode($res, true);
-limx\func\Debug::dump($obj);
+echo $res;
 $url = 'http://demo.tp5.lmx0536.cn/index/demos.tp5/test_input/key1/aa/key2/bb?key3=cc';
 $data = ['key1' => 'postData1', 'key2' => 'pData2'];
 $res = limx\func\Curl::post($url, $data);
