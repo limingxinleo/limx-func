@@ -24,6 +24,11 @@ $url = 'http://demo.tp5.lmx0536.cn/index/tools.api/get_api/id/' . $id;
 $res = limx\func\Curl::get($url);
 $obj = json_decode($res, true);
 limx\func\Debug::dump($obj);
+$url = 'http://demo.tp5.lmx0536.cn/index/demos.tp5/test_input/key1/aa/key2/bb?key3=cc';
+$data = ['key1' => 'postData1', 'key2' => 'pData2'];
+$res = limx\func\Curl::post($url, $data);
+echo $res;
+
 limx\func\Debug::dump(limx\func\Time::get_now_time());
 
 limx\func\Debug::dump(limx\func\Time::date_format(time(), '+1 week'));
