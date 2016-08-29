@@ -31,6 +31,11 @@ limx\func\Debug::dump(limx\func\Time::get_now_time());
 
 limx\func\Debug::dump(limx\func\Time::date_format(time(), '+1 week'));
 
+limx\func\Debug::dump(limx\func\Time::get_time_diff('2016-12-30', time(), 'i'));
+limx\func\Debug::dump(limx\func\Time::get_time_diff(time(), '2016-12-30', 'h'));
+limx\func\Debug::dump(limx\func\Time::get_time_diff('2016-12-30', time(), 'd'));
+limx\func\Debug::dump(limx\func\Time::isleap());
+
 $private_key = 'MIICXQIBAAKBgQDXJHKBZnonQEiT6WeJ8JiYHSdZuWTEAJpvsUfMO0s/Lp+zS8Xa
 ZmP/exGC75zveAvdRXsg20cZpTt6HtUYs/ZuHJl2HsiTIKlnmaDGMxNq7yCW7hAe
 BgXUjJGG8jUhQUI4BGDN/16S3WLFHBYJFahRQ7TibIdvAMkovqU0wO0KWwIDAQAB

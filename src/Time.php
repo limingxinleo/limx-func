@@ -21,17 +21,9 @@ class Time
      */
     public static function date_format($time = NULL, $change = NULL, $format = 'Y-m-d')
     {
-        if (empty($time)) {
-            //初始化数据
-            $time = time();
-        }
-        if (is_string($time)) {
-            $time = strtotime($time);
-        }
-        if (!empty($change)) {
-            $time = strtotime($change, $time);
-        }
-
+        empty($now) && $now = time();
+        is_string($time) && $time = strtotime($time);
+        !empty($change) && $time = strtotime($change, $time);
         return Date($format, $time);
     }
 
@@ -43,5 +35,43 @@ class Time
     public static function get_now_time()
     {
         return Date("Y-m-d H:i:s");
+    }
+
+    public static function get_time_diff($time, $now = NULL, $format = 's')
+    {
+        empty($now) && $now = time();
+        is_string($now) && $now = strtotime($now);
+        is_string($time) && $time = strtotime($time);
+        $ret = $time - $now;
+        $isFu = false;
+        if ($ret == 0) return 0;
+        if ($ret < 0) {
+            $ret = -$ret;
+            $isFu = true;
+        }
+        if ($format == 's') $ret = $ret;
+        else if ($format == 'i') $ret = intval($ret / 60) + 1;
+        else if ($format == 'h') $ret = intval($ret / 3600) + 1;
+        else if ($format == 's') $ret = intval($ret / (3600 * 24)) + 1;
+        else if ($format == 'w') $ret = intval($ret / (3600 * 24 * 7)) + 1;
+        else {
+            $month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            $ret = intval($ret / (3600 * 24)) + 1;
+            if ($format == 'm') {
+
+            }
+        }
+        if ($isFu) return -$ret;
+        return $ret;
+    }
+
+    public static function isleap($time = NULL)
+    {
+        empty($time) && $time = time();
+        is_string($time) && $time = strtotime($time);
+        $year = Date('Y', $time);
+        if ($year % 400 === 0) return true;
+        if ($year % 4 === 0 && $year % 100 !== 0) return true;
+        return false;
     }
 }
