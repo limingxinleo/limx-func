@@ -37,6 +37,15 @@ class Time
         return Date("Y-m-d H:i:s");
     }
 
+    /**
+     * [get_time_diff 时间差]
+     * @desc
+     * @author limx
+     * @param $time 较大的时间
+     * @param null $now 较小的时间
+     * @param string $format s秒 i分钟 h小时
+     * @return int
+     */
     public static function get_time_diff($time, $now = NULL, $format = 's')
     {
         empty($now) && $now = time();
@@ -65,6 +74,13 @@ class Time
         return $ret;
     }
 
+    /**
+     * [isleap 是否是闰年]
+     * @desc
+     * @author limx
+     * @param null $time 时间戳、DateTime时间字符串
+     * @return bool
+     */
     public static function isleap($time = NULL)
     {
         empty($time) && $time = time();
