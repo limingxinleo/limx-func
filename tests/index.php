@@ -27,13 +27,13 @@ $data = ['key1' => 'postData1', 'key2' => 'pData2'];
 $res = limx\func\Curl::post($url, $data);
 echo $res;
 
-limx\func\Debug::dump(limx\func\Time::get_now_time());
+limx\func\Debug::dump(limx\func\Time::now());
 
-limx\func\Debug::dump(limx\func\Time::date_format(time(), '+1 week'));
+limx\func\Debug::dump(limx\func\Time::format(time(), '+1 week'));
 
-limx\func\Debug::dump(limx\func\Time::get_time_diff('2016-12-30', time(), 'i'));
-limx\func\Debug::dump(limx\func\Time::get_time_diff(time(), '2016-12-30', 'h'));
-limx\func\Debug::dump(limx\func\Time::get_time_diff('2016-12-30', time(), 'd'));
+limx\func\Debug::dump(limx\func\Time::diff('2016-12-30', time(), 'i'));
+limx\func\Debug::dump(limx\func\Time::diff(time(), '2016-12-30', 'h'));
+limx\func\Debug::dump(limx\func\Time::diff('2016-12-30', time(), 'd'));
 limx\func\Debug::dump(limx\func\Time::isleap());
 
 $private_key = 'MIICXQIBAAKBgQDXJHKBZnonQEiT6WeJ8JiYHSdZuWTEAJpvsUfMO0s/Lp+zS8Xa
@@ -58,9 +58,9 @@ $data = [
     'wife' => 'yy',
     'url' => 'http://www.lmx0536.cn/'
 ];
-$sign_str = limx\func\Rsa::arr_to_str($data);
-$sign = limx\func\Rsa::rsa_sign($sign_str, $private_key);
-$check = limx\func\Rsa::rsa_verify($sign_str, $public_key, $sign);
+$sign_str = limx\func\Rsa::arrToStr($data);
+$sign = limx\func\Rsa::rsaSign($sign_str, $private_key);
+$check = limx\func\Rsa::rsaVerify($sign_str, $public_key, $sign);
 limx\func\Debug::dump($sign);
 limx\func\Debug::dump($check);
 

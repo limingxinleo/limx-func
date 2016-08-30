@@ -17,7 +17,7 @@ class Rsa
      * @param $private_key 商户私钥字符串
      * return 签名结果
      */
-    public static function rsa_sign($data, $private_key)
+    public static function rsaSign($data, $private_key)
     {
         //以下为了初始化私钥，保证在您填写私钥时不管是带格式还是不带格式都可以通过验证。
         $private_key = str_replace("-----BEGIN RSA PRIVATE KEY-----", "", $private_key);
@@ -47,7 +47,7 @@ class Rsa
      * @param $sign 要校对的的签名结果
      * return 验证结果
      */
-    public static function rsa_verify($data, $alipay_public_key, $sign)
+    public static function rsaVerify($data, $alipay_public_key, $sign)
     {
         //以下为了初始化私钥，保证在您填写私钥时不管是带格式还是不带格式都可以通过验证。
         $alipay_public_key = str_replace("-----BEGIN PUBLIC KEY-----", "", $alipay_public_key);
@@ -73,7 +73,7 @@ class Rsa
      * @param $type 类型 0:正常 1:key="value" 2:key=urlencode(value) 3:key=\"value\"
      * @return string
      */
-    public static function arr_to_str($data, $type = 0)
+    public static function arrToStr($data, $type = 0)
     {
         $res = '';
         foreach ($data as $i => $v) {

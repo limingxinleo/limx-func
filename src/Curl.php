@@ -103,7 +103,7 @@ class Curl
      * @param array $header
      * @return mixed
      */
-    public static function post_json($url, $data, $header = [])
+    public static function postJson($url, $data, $header = [])
     {
         $data_string = json_encode($data);
         $ch = curl_init($url);

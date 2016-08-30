@@ -19,7 +19,7 @@ class Time
      * @param string $format 时间格式
      * @return bool|string
      */
-    public static function date_format($time = NULL, $change = NULL, $format = 'Y-m-d')
+    public static function format($time = NULL, $change = NULL, $format = 'Y-m-d')
     {
         empty($now) && $now = time();
         is_string($time) && $time = strtotime($time);
@@ -32,7 +32,7 @@ class Time
      * @author limx
      * @return bool|string
      */
-    public static function get_now_time()
+    public static function now()
     {
         return Date("Y-m-d H:i:s");
     }
@@ -46,7 +46,7 @@ class Time
      * @param string $format s秒 i分钟 h小时
      * @return int
      */
-    public static function get_time_diff($time, $now = NULL, $format = 's')
+    public static function diff($time, $now = NULL, $format = 's')
     {
         empty($now) && $now = time();
         is_string($now) && $now = strtotime($now);

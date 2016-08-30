@@ -18,7 +18,7 @@ class Encoder
      * @param string $replace 过滤成replace
      * @return string
      */
-    public static function emoji_filter($value = "", $replace = "")
+    public static function emojiFilter($value = "", $replace = "")
     {
         $strEncode = '';
         $length = mb_strlen($value, 'utf-8');
@@ -39,7 +39,7 @@ class Encoder
      * @param string $value
      * @return string
      */
-    public static function emoji_encode($value = "")
+    public static function emojiEncode($value = "")
     {
         $strEncode = '';
         $length = mb_strlen($value, 'utf-8');
@@ -60,7 +60,7 @@ class Encoder
      * @param string $value
      * @return mixed|string
      */
-    public static function emoji_decode($value = "")
+    public static function emojiDecode($value = "")
     {
         preg_match_all('/\[\[EMOJI:[%\w+]+\]\]/', $value, $match);
         if (empty($match)) {
