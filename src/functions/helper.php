@@ -114,7 +114,7 @@ if (!function_exists('multiarray')) {
     }
 }
 
-if (function_exists('obj_to_array')) {
+if (!function_exists('obj_to_array')) {
     /**
      * [obj_to_array object递归转化为array]
      * @author limx
