@@ -113,3 +113,22 @@ if (!function_exists('multiarray')) {
         return $result;
     }
 }
+
+if (function_exists('obj_to_array')) {
+    /**
+     * [obj_to_array object递归转化为array]
+     * @author limx
+     * @param $e object
+     * @return array|void
+     */
+    function obj_to_array($e)
+    {
+        $e = (array)$e;
+        foreach ($e as $k => $v) {
+            if (gettype($v) == 'resource') return;
+            if (gettype($v) == 'object' || gettype($v) == 'array')
+                $e[$k] = obj_to_array($v);
+        }
+        return $e;
+    }
+}
