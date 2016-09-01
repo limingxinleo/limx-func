@@ -112,6 +112,8 @@ class Curl
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        //递归的抓取http头中Location中指明的url
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         if (!empty($header)) {
             $headerArr = [];
             foreach ($header as $i => $v) {
