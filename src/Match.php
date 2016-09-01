@@ -25,4 +25,19 @@ class Match
         }
         return false;
     }
+
+    /**
+     * [isMobile 判断是否为手机号]
+     * @desc
+     * @author limx
+     * @param $phonenumber 手机号
+     * @return bool
+     */
+    public static function isMobile($phonenumber)
+    {
+        if (preg_match("/^1[34578]{1}\d{9}$/", $phonenumber)) {
+            return true;
+        }
+        return false;
+    }
 }
