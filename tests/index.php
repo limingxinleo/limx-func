@@ -17,6 +17,7 @@ require_once '../src/Random.php';
 require_once '../src/Debug.php';
 require_once '../src/Encrypt.php';
 require_once '../src/Log.php';
+require_once '../src/Match.php';
 require_once '../src/functions/helper.php';
 
 $url = 'http://demo.tp5.lmx0536.cn/index/demos.tp5/test_input/key1/aa/key2/bb?key3=cc';
@@ -85,6 +86,13 @@ limx\func\Debug::dump($res);
 
 limx\func\Log::write($str);
 limx\func\Log::write($res, 'arr');
+
+$res = limx\func\Match::isInt(-1);
+limx\func\Debug::dump($res);
+$res = limx\func\Match::isInt(100);
+limx\func\Debug::dump($res);
+$res = limx\func\Match::isInt('ss');
+limx\func\Debug::dump($res);
 
 
 
