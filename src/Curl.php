@@ -79,6 +79,8 @@ class Curl
         curl_setopt($curl, CURLOPT_HEADER, 0);
         //设置获取的信息以文件流的形式返回，而不是直接输出。
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        //递归的抓取http头中Location中指明的url
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
         if (!empty($headerData)) {
             $headerArr = array();
             foreach ($headerData as $i => $v) {
@@ -112,8 +114,6 @@ class Curl
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        //递归的抓取http头中Location中指明的url
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         if (!empty($header)) {
             $headerArr = [];
             foreach ($header as $i => $v) {
