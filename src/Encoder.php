@@ -135,7 +135,7 @@ class Encoder
      * @param string $picName 转存后名称
      * @return array|bool|string
      */
-    public function base64ToImg($root = "uploads/", $data = "", $picName = "")
+    public static function base64ToImg($root = "uploads/", $data = "", $picName = "")
     {
         $is_arr = true;
         if (!is_dir($root)) {
