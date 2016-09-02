@@ -20,6 +20,11 @@ require_once '../src/Log.php';
 require_once '../src/Match.php';
 require_once '../src/functions/helper.php';
 
+
+limx\func\Debug::dump(limx\func\Match::isImage('aaa',['aaa']));
+limx\func\Debug::dump(limx\func\Match::isImage('png',['aaa']));
+limx\func\Debug::dump(limx\func\Match::isImage('aaa'));
+
 $url = 'http://demo.tp5.lmx0536.cn/index/demos.tp5/test_input/key1/aa/key2/bb?key3=cc';
 $res = limx\func\Curl::get($url);
 echo $res;
