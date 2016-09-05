@@ -58,7 +58,7 @@ class File
             }
         } else {
             if (substr($src, -1) != '/') $src = $src . '/';
-            $ls = scandir($src);
+            $ls = scandir($root . $src);
 
             for ($i = 0; $i < count($ls); $i++) {
                 if ($ls[$i] == '.' or $ls[$i] == '..') continue;
