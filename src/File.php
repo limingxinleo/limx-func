@@ -63,7 +63,9 @@ class File
             for ($i = 0; $i < count($ls); $i++) {
                 if ($ls[$i] == '.' or $ls[$i] == '..') continue;
                 $_dst = $dst . $src . $ls[$i];
-                self::_copy($root . $src, $ls[$i], $dst . $src);
+                if (!self::_copy($root . $src, $ls[$i], $dst . $src)) {
+                    return false;
+                };
             }
         }
         return true;
