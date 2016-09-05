@@ -9,6 +9,9 @@
 // | Date: 2016/9/5 Time: 9:01
 // +----------------------------------------------------------------------
 namespace limx\func;
+
+use ZipArchive;
+
 class File
 {
     /**
@@ -38,6 +41,46 @@ class File
     }
 
     /**
+     * [zip 打包函数]
+     * @author limx
+     * @param $root 源文件根目录
+     * @param $src 需要压缩的相对目录名
+     * @param $ziproot 压缩文件的根目录
+     * @param string $zipname 压缩文件的相对目录名
+     * @param bool $del 是否压缩后删除源文件
+     * @return bool|mixed
+     */
+    public static function zip($root, $src, $ziproot, $zipname = '', $del = true)
+    {
+        if (empty($root)) return false;
+        if (substr($root, -1) != '/') $root = $root . '/';
+        if (empty($src)) return false;
+        if (empty($ziproot)) return false;
+        if (substr($ziproot, -1) != '/') $ziproot = $ziproot . '/';
+        empty($zipname) && $zipname = $src . time() . '.zip';
+        //建立一个新的ZipArchive的对象
+        $zip = new \ZipArchive();
+        $res = $zip->open($ziproot . $zipname, \ZipArchive::CREATE);
+        //如果打开成功
+        if ($res === true) {
+            $files = [];
+            traverse($root . $src, $files);
+            foreach ($files as $i => $v) {
+                $av = str_replace($root, '', $v);
+                $zip->addFile($v, $av);
+            }
+            $zip->close();
+            self::rm($root . $src);
+        }
+        return $res;
+    }
+
+    public static function rm($src)
+    {
+        //code
+    }
+
+    /**
      * [_copy 文件复制]
      * @author limx
      * @param $root 根目录
@@ -45,7 +88,8 @@ class File
      * @param $dst 目标根目录
      * @return bool
      */
-    private static function _copy($root, $src, $dst)
+    private
+    static function _copy($root, $src, $dst)
     {
         if (!is_dir($root . $src)) {
             //复制路径结构
