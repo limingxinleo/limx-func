@@ -18,11 +18,15 @@ require_once '../src/Debug.php';
 require_once '../src/Encrypt.php';
 require_once '../src/Log.php';
 require_once '../src/Match.php';
+require_once '../src/File.php';
 require_once '../src/functions/helper.php';
 
 
-limx\func\Debug::dump(limx\func\Match::isImage('aa.aaa',['aaa']));
-limx\func\Debug::dump(limx\func\Match::isImage('aa.png',['aaa']));
+$res = limx\func\File::copy(__DIR__, ['log/201609/', '201608'], 'test');
+limx\func\Debug::dump($res);
+
+limx\func\Debug::dump(limx\func\Match::isImage('aa.aaa', ['aaa']));
+limx\func\Debug::dump(limx\func\Match::isImage('aa.png', ['aaa']));
 limx\func\Debug::dump(limx\func\Match::isImage('aa.aaa'));
 
 $url = 'http://demo.tp5.lmx0536.cn/index/demos.tp5/test_input/key1/aa/key2/bb?key3=cc';
