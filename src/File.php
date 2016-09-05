@@ -50,7 +50,7 @@ class File
      * @param bool $del 是否压缩后删除源文件
      * @return bool|mixed
      */
-    public static function zip($root, $src, $ziproot, $zipname = '', $del = true)
+    public static function zip($root, $src, $ziproot, $zipname = '', $del = false)
     {
         if (empty($root)) return false;
         if (substr($root, -1) != '/') $root = $root . '/';
@@ -70,14 +70,38 @@ class File
                 $zip->addFile($v, $av);
             }
             $zip->close();
-            self::rm($root . $src);
+            if ($del) {
+                self::rm($root . $src);
+            }
         }
         return $res;
     }
 
+    /**
+     * [rm 删除整个目录]
+     * @author limx
+     * @param $src 目录地址
+     * @return bool
+     */
     public static function rm($src)
     {
-        //code
+        if (empty($src)) return false;
+        $ls = scandir($src);
+        for ($i = 0; $i < count($ls); $i++) {
+            if ($ls[$i] == '.' or $ls[$i] == '..') continue;
+            $_dst = $src . $ls[$i];
+            if (!is_dir($_dst)) {
+                unlink($_dst);
+            } else {
+                self::rm($_dst);
+            }
+        }
+        //删除当前文件夹：
+        if (rmdir($src)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -88,8 +112,7 @@ class File
      * @param $dst 目标根目录
      * @return bool
      */
-    private
-    static function _copy($root, $src, $dst)
+    private static function _copy($root, $src, $dst)
     {
         if (!is_dir($root . $src)) {
             //复制路径结构
