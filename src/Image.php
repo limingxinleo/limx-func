@@ -12,10 +12,20 @@ namespace limx\func;
 
 class Image
 {
+    /**
+     * [compress 图片压缩]
+     * @author limx
+     * @param $image 图片源地址
+     * @param int $dw 宽度
+     * @param int $dh 高度
+     * @param int $type 压缩类型
+     * @param string $ex 压缩文件名后缀
+     * @return bool
+     */
     public static function compress($image, $dw = 450, $dh = 450, $type = 2, $ex = "_x")
     {
         if (!file_exists($image)) {
-            Return False;
+            return false;
         } // 如果需要生成缩略图,则将原图拷贝一下重新给$image赋值
         if ($type != 1) {
             copy($image, str_replace(".", $ex . ".", $image));
