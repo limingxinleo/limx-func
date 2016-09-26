@@ -27,6 +27,24 @@ class Match
     }
 
     /**
+     * [isInts 判断是否为整数集合以$ex分隔]
+     * @desc
+     * @author limx
+     * @param string $ids 需要验证字符串
+     * @param string $ex 分隔符 默认,
+     * @return bool
+     */
+    public static function isInts($ids = '', $ex = ',')
+    {
+        $reg = "/^(-?[0-9]+{$ex})*-?[0-9]+$/";
+        if (preg_match($reg, $ids)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * [isMobile 判断是否为手机号]
      * @desc
      * @author limx

@@ -22,6 +22,9 @@ require_once '../src/File.php';
 require_once '../src/functions/helper.php';
 
 
+limx\func\Debug::dump(limx\func\Match::isInts('21'));
+limx\func\Debug::dump(limx\func\Match::isInts('10//11,21'));
+limx\func\Debug::dump(limx\func\Match::isInts('15,-11,222,21'));
 $res = limx\func\File::copy(__DIR__, ['log/201609/', '201608'], 'test');
 limx\func\Debug::dump($res);
 
