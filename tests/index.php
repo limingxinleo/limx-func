@@ -9,16 +9,6 @@
 // | Date: 2016/8/12 Time: 13:50
 // +----------------------------------------------------------------------
 
-//require_once '../src/Curl.php';
-//require_once '../src/Encoder.php';
-//require_once '../src/Time.php';
-//require_once '../src/Rsa.php';
-//require_once '../src/Random.php';
-//require_once '../src/Debug.php';
-//require_once '../src/Encrypt.php';
-//require_once '../src/Log.php';
-//require_once '../src/Match.php';
-//require_once '../src/File.php';
 require_once '../src/functions/helper.php';
 spl_autoload_register(function ($class_name) {
     $file = __DIR__ . '/../src/' . $class_name . '.php';
