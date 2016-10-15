@@ -18,7 +18,7 @@ class Debug
      * @param string $label 标签 默认为空
      * @return void|string
      */
-    public static function dump($var, $echo = true, $label = null, $cli=false,$eol="\n")
+    public static function dump($var, $echo = true, $label = null, $cli = false, $eol = "\n")
     {
         $label = (null === $label) ? '' : rtrim($label) . ':';
         ob_start();
