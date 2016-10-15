@@ -22,15 +22,15 @@ class Log
      */
     public static function write($content = '', $code = 'LOG', $root = '', $file = '')
     {
-        empty($root) && $root = 'log/' . Date('Ym') . '/';
+        empty($root) && $root = 'log/' . date('Ym') . '/';
         substr($root, -1) != '/' && $root .= '/';
-        empty($file) && $file = Date('Ymd');
+        empty($file) && $file = date('Ymd');
         $file .= '.log';
         if (!is_dir($root)) {
             mkdir($root, 0777, true);
         }
 
-        $msg[] = Date('Y-m-d H:i:s');
+        $msg[] = date('Y-m-d H:i:s');
         $msg[] = strtoupper($code);
         $msg[] = is_array($content) ? json_encode($content) : $content;
 

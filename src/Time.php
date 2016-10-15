@@ -24,7 +24,7 @@ class Time
         empty($now) && $now = time();
         is_string($time) && $time = strtotime($time);
         !empty($change) && $time = strtotime($change, $time);
-        return Date($format, $time);
+        return date($format, $time);
     }
 
     /**
@@ -34,7 +34,7 @@ class Time
      */
     public static function now()
     {
-        return Date("Y-m-d H:i:s");
+        return date("Y-m-d H:i:s");
     }
 
     /**
@@ -85,7 +85,7 @@ class Time
     {
         empty($time) && $time = time();
         is_string($time) && $time = strtotime($time);
-        $year = Date('Y', $time);
+        $year = date('Y', $time);
         if ($year % 400 === 0) return true;
         if ($year % 4 === 0 && $year % 100 !== 0) return true;
         return false;
