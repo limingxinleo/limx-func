@@ -18,6 +18,13 @@ spl_autoload_register(function ($class_name) {
     }
 });
 
+use limx\func\Debug;
+
+$config = [
+    'd' => ['a' => 1],
+];
+Debug::dump(\limx\func\Arr::get('d.a', $config));
+
 limx\func\Debug::dump(limx\func\Match::isInts('21'));
 limx\func\Debug::dump(limx\func\Match::isInts('10//11,21'));
 limx\func\Debug::dump(limx\func\Match::isInts('15,-11,222,21'));
