@@ -126,4 +126,17 @@ class Curl
         curl_close($ch);
         return $result;
     }
+
+    /**
+     * [getArr]
+     * @desc curl GET 方法 允许传入数组
+     * @author limx
+     * @param $url 请求地址
+     * @param array $params 参数
+     */
+    public static function getArr($url, $params = [])
+    {
+        $url .= strpos($url, '?') ? '&' : '?';
+        return self::get($url . http_build_query($params));
+    }
 }

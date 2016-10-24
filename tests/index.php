@@ -9,7 +9,8 @@
 // | Date: 2016/8/12 Time: 13:50
 // +----------------------------------------------------------------------
 
-require_once '../src/functions/helper.php';
+namespace limx\func;
+require_once __DIR__ . '/../src/functions/helper.php';
 spl_autoload_register(function ($class_name) {
     $file = __DIR__ . '/../src/' . $class_name . '.php';
     $file = str_replace('limx\func\\', '', $file);
@@ -20,37 +21,46 @@ spl_autoload_register(function ($class_name) {
 
 use limx\func\Debug;
 
+function dump($data)
+{
+    Debug::dump($data);
+}
+
+$url = 'http://demo.tp5.lmx0536.cn/index/demos.tp5/test_input/key1/aa/key2/bb?key3=cc';
+$res = Curl::getArr($url,['key4'=>'dd']);
+echo $res;
+
 $config = [
     'd' => ['a' => 1],
 ];
-Debug::dump(\limx\func\Arr::get('d.a', $config));
+Debug::dump(Arr::get('d.a', $config));
 
-limx\func\Debug::dump(limx\func\Match::isInts('21'));
-limx\func\Debug::dump(limx\func\Match::isInts('10//11,21'));
-limx\func\Debug::dump(limx\func\Match::isInts('15,-11,222,21'));
-$res = limx\func\File::copy(__DIR__, ['log/201609/', '201608'], 'test');
-limx\func\Debug::dump($res);
+Debug::dump(Match::isInts('21'));
+Debug::dump(Match::isInts('10//11,21'));
+Debug::dump(Match::isInts('15,-11,222,21'));
+$res = File::copy(__DIR__, ['log/201609/', '201608'], 'test');
+Debug::dump($res);
 
-limx\func\Debug::dump(limx\func\Match::isImage('aa.aaa', ['aaa']));
-limx\func\Debug::dump(limx\func\Match::isImage('aa.png', ['aaa']));
-limx\func\Debug::dump(limx\func\Match::isImage('aa.aaa'));
+Debug::dump(Match::isImage('aa.aaa', ['aaa']));
+Debug::dump(Match::isImage('aa.png', ['aaa']));
+Debug::dump(Match::isImage('aa.aaa'));
 
 $url = 'http://demo.tp5.lmx0536.cn/index/demos.tp5/test_input/key1/aa/key2/bb?key3=cc';
-$res = limx\func\Curl::get($url);
+$res = Curl::get($url);
 echo $res;
 $url = 'http://demo.tp5.lmx0536.cn/index/demos.tp5/test_input/key1/aa/key2/bb?key3=cc';
 $data = ['key1' => 'postData1', 'key2' => 'pData2'];
-$res = limx\func\Curl::post($url, $data);
+$res = Curl::post($url, $data);
 echo $res;
 
-limx\func\Debug::dump(limx\func\Time::now());
+Debug::dump(Time::now());
 
-limx\func\Debug::dump(limx\func\Time::format(time(), '+1 week'));
+Debug::dump(Time::format(time(), '+1 week'));
 
-limx\func\Debug::dump(limx\func\Time::diff('2016-12-30', time(), 'i'));
-limx\func\Debug::dump(limx\func\Time::diff(time(), '2016-12-30', 'h'));
-limx\func\Debug::dump(limx\func\Time::diff('2016-12-30', time(), 'd'));
-limx\func\Debug::dump(limx\func\Time::isleap());
+Debug::dump(Time::diff('2016-12-30', time(), 'i'));
+Debug::dump(Time::diff(time(), '2016-12-30', 'h'));
+Debug::dump(Time::diff('2016-12-30', time(), 'd'));
+Debug::dump(Time::isleap());
 
 $private_key = 'MIICXQIBAAKBgQDXJHKBZnonQEiT6WeJ8JiYHSdZuWTEAJpvsUfMO0s/Lp+zS8Xa
 ZmP/exGC75zveAvdRXsg20cZpTt6HtUYs/ZuHJl2HsiTIKlnmaDGMxNq7yCW7hAe
@@ -74,40 +84,40 @@ $data = [
     'wife' => 'yy',
     'url' => 'http://www.lmx0536.cn/'
 ];
-$sign_str = limx\func\Rsa::arrToStr($data);
-$sign = limx\func\Rsa::rsaSign($sign_str, $private_key);
-$check = limx\func\Rsa::rsaVerify($sign_str, $public_key, $sign);
-limx\func\Debug::dump($sign);
-limx\func\Debug::dump($check);
+$sign_str = Rsa::arrToStr($data);
+$sign = Rsa::rsaSign($sign_str, $private_key);
+$check = Rsa::rsaVerify($sign_str, $public_key, $sign);
+Debug::dump($sign);
+Debug::dump($check);
 
-$str = limx\func\Random::str(6, 'C');
-limx\func\Debug::dump($str);
+$str = Random::str(6, 'C');
+Debug::dump($str);
 
-$str = limx\func\Encrypt::encode($str);
-limx\func\Debug::dump($str);
-$str = limx\func\Encrypt::decode($str);
-limx\func\Debug::dump($str);
-$str = limx\func\Encrypt::encode($str, 'love');
-limx\func\Debug::dump($str);
-$str = limx\func\Encrypt::decode($str, 'love');
-limx\func\Debug::dump($str);
+$str = Encrypt::encode($str);
+Debug::dump($str);
+$str = Encrypt::decode($str);
+Debug::dump($str);
+$str = Encrypt::encode($str, 'love');
+Debug::dump($str);
+$str = Encrypt::decode($str, 'love');
+Debug::dump($str);
 
 $res = [];
 traverse(__DIR__ . '/../', $res, 'php');
-limx\func\Debug::dump($res);
+Debug::dump($res);
 $res = [];
 traverse(__DIR__ . '/..', $res, 'php');
-limx\func\Debug::dump($res);
+Debug::dump($res);
 
-limx\func\Log::write($str);
-limx\func\Log::write($res, 'arr');
+Log::write($str);
+Log::write($res, 'arr');
 
-$res = limx\func\Match::isInt(-1);
-limx\func\Debug::dump($res);
-$res = limx\func\Match::isInt(100);
-limx\func\Debug::dump($res);
-$res = limx\func\Match::isInt('ss');
-limx\func\Debug::dump($res);
+$res = Match::isInt(-1);
+Debug::dump($res);
+$res = Match::isInt(100);
+Debug::dump($res);
+$res = Match::isInt('ss');
+Debug::dump($res);
 
 
 
