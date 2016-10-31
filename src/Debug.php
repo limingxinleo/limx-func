@@ -68,6 +68,13 @@ class Debug
         return empty($color[$type]) ? $str : $color[$type] . $str . $end;
     }
 
+    /**
+     * [colorBegin desc]
+     * @desc 颜色的开始标记
+     * @author limx
+     * @param string $type
+     * @return mixed
+     */
     public static function colorBegin($type = 'red')
     {
         $color = [
@@ -79,6 +86,12 @@ class Debug
         return empty($color[$type]) ? $color['red'] : $color[$type];
     }
 
+    /**
+     * [colorEnd desc]
+     * @desc 颜色的结束标记
+     * @author limx
+     * @return string
+     */
     public static function colorEnd()
     {
         return "\033[0m";

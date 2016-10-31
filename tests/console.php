@@ -23,3 +23,4 @@ $arr = [
 Debug::dump($arr, true, null, true);
 Debug::dump($arr, true, null, true, "\n", 'red');
 Debug::dump($arr, true, null, true, "\n", 'blue');
+Debug::dump("HELLO WORLD!--limx-李铭昕", true, null, true, "\n", 'blue');
