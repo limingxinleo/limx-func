@@ -20,14 +20,17 @@ spl_autoload_register(function ($class_name) {
 });
 
 use limx\func\Debug;
+use limx\func\Utils;
 
 function dump($data)
 {
     Debug::dump($data);
 }
 
+dump(Utils::ip());
+
 $url = 'http://demo.tp5.lmx0536.cn/index/demos.tp5/test_input/key1/aa/key2/bb?key3=cc';
-$res = Curl::getArr($url,['key4'=>'dd']);
+$res = Curl::getArr($url, ['key4' => 'dd']);
 echo $res;
 
 $config = [
