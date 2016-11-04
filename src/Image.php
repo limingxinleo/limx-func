@@ -100,6 +100,52 @@ class Image
             imagejpeg($nImg, $image);
             return true;
         }
+    }
 
+    /**
+     * [base64ToImg base64转化为图片]
+     * @desc
+     * @author limx
+     * @param string $root 图片转存路径
+     * @param string $data 数据流
+     * @param string $picName 转存后名称
+     * @return array|bool|string
+     */
+    public static function base64ToImg($root = "uploads/", $data = "", $picName = "")
+    {
+        $is_arr = true;
+        if (!is_dir($root)) {
+            mkdir($root, 0777, true);
+        }
+
+        // 判断目录是否是斜杠结尾，若不是增加斜杠
+        $ds = substr($root, strlen($root) - 1, strlen($root));
+        if ($ds != '/') {
+            $root = $root . '/';
+        }
+
+        if (empty($picName)) {
+            $picName = date("YmdHis") . rand(0, 99);
+        }
+
+        if (!is_array($data)) {
+            $data = [$data];
+            $is_arr = false;
+        }
+
+        $returnData = false;
+        foreach ($data as $key => $value) {
+            if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $value, $result)) {
+                $type = $result[2];
+                $new_file = $root . $picName . $key . ".{$type}";
+                if (file_put_contents($new_file, base64_decode(str_replace($result[1], '', $value)))) {
+                    if ($is_arr === false) {
+                        return $picName . $key . ".{$type}";
+                    }
+                    $returnData[] = $picName . $key . ".{$type}";
+                }
+            }
+        }
+        return $returnData;
     }
 }
