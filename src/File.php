@@ -81,9 +81,10 @@ class File
      * [rm 删除整个目录]
      * @author limx
      * @param $src 目录地址
+     * @param $isDelDir 是否删除当前文件夹
      * @return bool
      */
-    public static function rm($src)
+    public static function rm($src, $isDelDir = true)
     {
         if (empty($src)) return false;
         $ls = scandir($src);
@@ -97,10 +98,8 @@ class File
             }
         }
         //删除当前文件夹：
-        if (rmdir($src)) {
-            return true;
-        } else {
-            return false;
+        if ($isDelDir) {
+            rmdir($src);
         }
     }
 
