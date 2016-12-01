@@ -228,6 +228,23 @@ class Str
     }
 
     /**
+     * [replace desc]
+     * @desc 替换所有
+     * @author limx
+     * @param $search
+     * @param $replace
+     * @param $subject
+     * @return mixed
+     */
+    public static function replace($search, $replace, $subject)
+    {
+        foreach ((array)$search as $item) {
+            $subject = str_replace($item, $replace, $subject);
+        }
+        return $subject;
+    }
+
+    /**
      * Replace the first occurrence of a given value in the string.
      *
      * @param  string $search
