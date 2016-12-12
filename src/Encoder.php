@@ -126,4 +126,32 @@ class Encoder
         }
         return $returnData;
     }
+
+    /**
+     * [base64UrlEncode desc]
+     * @desc
+     * @author limx
+     * @param $str
+     * @return mixed
+     */
+    public static function base64UrlEncode($str)
+    {
+        $find = array('+', '/');
+        $replace = array('-', '_');
+        return str_replace($find, $replace, base64_encode($str));
+    }
+
+    /**
+     * [base64UrlDecode desc]
+     * @desc
+     * @author limx
+     * @param $str
+     * @return string
+     */
+    public static function base64UrlDecode($str)
+    {
+        $find = array('-', '_');
+        $replace = array('+', '/');
+        return base64_decode(str_replace($find, $replace, $str));
+    }
 }
