@@ -17,7 +17,7 @@ class Curl
      * @param array $postFields //请求参数
      * @return mixed
      */
-    public static function post($url, $data, $type = 'url', $header = NULL, $ssl = false)
+    public static function post($url, $data, $type = 'url', $header = [], $ssl = false)
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
@@ -43,10 +43,8 @@ class Curl
             case 'json':
                 $postFields = json_encode($data);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                        'Content-Type: application/json',
-                        'Content-Length: ' . strlen($postFields))
-                );
+                $header[] = 'Content-Type: application/json';
+                $header[] = 'Content-Length: ' . strlen($postFields);
                 break;
             case 'data':
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -56,7 +54,9 @@ class Curl
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
                 break;
         }
-
+        if (!empty($header)) {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        }
         $result = curl_exec($ch);
         curl_close($ch);
         return $result;
