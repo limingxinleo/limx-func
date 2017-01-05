@@ -70,7 +70,7 @@ class Curl
      * @param array $headerData
      * @return mixed
      */
-    public static function get($url, $headerData = array())
+    public static function get($url, $headerData = [])
     {
         $curl = curl_init();
         //设置抓取的url
@@ -82,9 +82,13 @@ class Curl
         //递归的抓取http头中Location中指明的url
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
         if (!empty($headerData)) {
-            $headerArr = array();
+            $headerArr = [];
             foreach ($headerData as $i => $v) {
-                $headerArr[] = $i . ':' . $v;
+                if (is_int($i)) {
+                    $headerArr[] = $v;
+                } else {
+                    $headerArr[] = $i . ':' . $v;
+                }
             }
             curl_setopt($curl, CURLOPT_HTTPHEADER, $headerArr);
         }
