@@ -12,10 +12,11 @@ namespace limx\func;
 class Rsa
 {
     /**
-     * RSA签名
-     * @param $data 待签名数据
+     * @desc   RSA签名
+     * @author limx
+     * @param $data        待签名数据
      * @param $private_key 商户私钥字符串
-     * return 签名结果
+     * @return string 签名结果
      */
     public static function rsaSign($data, $private_key)
     {
@@ -39,13 +40,14 @@ class Rsa
         $sign = base64_encode($sign);
         return $sign;
     }
-
+    
     /**
-     * RSA验签
-     * @param $data 待签名数据
+     * @desc   RSA验签
+     * @author limx
+     * @param $data              待签名数据
      * @param $alipay_public_key 支付宝的公钥字符串
-     * @param $sign 要校对的的签名结果
-     * return 验证结果
+     * @param $sign              要校对的的签名结果
+     * @return bool
      */
     public static function rsaVerify($data, $alipay_public_key, $sign)
     {
