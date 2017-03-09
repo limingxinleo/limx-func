@@ -40,7 +40,7 @@ class Rsa
         $sign = base64_encode($sign);
         return $sign;
     }
-    
+
     /**
      * @desc   RSA验签
      * @author limx
